@@ -20,4 +20,9 @@ export type RegisterPayloadType = {
     lastname: string;
     email: string;
     password: string;
+};
+
+export type TaskType = {
+    name: string;
+    estimation: string;
 }

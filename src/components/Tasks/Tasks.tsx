@@ -1,9 +1,15 @@
 import { Bullet, TaskContainer, TaskInputBox, TaskLine } from "./Tasks.css";
 import { AuthenticationScreenInputField, GeneralPadding } from "../Authentication/Authentication.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { taskTypes } from "../../utils/dataStructures";
+import useGetFetch from "../../hooks/useGetFetch";
+import { requestUrls } from "../../utils/backend";
+import { TaskType } from "../../utils/types";
+import useValidateUser from "../../hooks/useValidateUser";
 
 export const Tasks = () => {
+    const { response, fetcher } = useGetFetch<TaskType[], string>(requestUrls.tasks);
+    const { token } = useValidateUser();
 
     const mockData = [
         {
@@ -29,6 +35,19 @@ export const Tasks = () => {
     ]
 
     const [task, setTask] = useState<string>('');
+    const [tasks, setTasks] = useState<TaskType[]>([]);
+
+    useEffect(() => {
+        fetcher(token);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token]);
+
+    useEffect(() => {
+        if (response) {
+            setTasks(response)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [response]);
 
     const handleInputTaskField = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTask(event.target.value);
