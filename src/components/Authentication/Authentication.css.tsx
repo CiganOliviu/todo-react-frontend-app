@@ -35,6 +35,7 @@ export const AuthenticationScreenInputField = styled.input`
     color: #fff;
     font-weight: bold;
     border: 0.1rem solid #fff;
+    border-radius: 0.5rem;
   
     ::placeholder {
         color: #fff;
