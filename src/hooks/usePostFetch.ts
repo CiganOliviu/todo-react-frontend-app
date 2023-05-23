@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FetchResponse } from "../types/types";
+import { FetchResponse } from "../utils/types";
 
 const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, method?: 'PATCH' | 'DELETE'): FetchResponse<Data, Param> => {
     const [isLoading, setIsLoading] = useState<boolean>(false);

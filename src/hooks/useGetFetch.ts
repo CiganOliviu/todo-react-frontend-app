@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FetchResponse } from "../types/types";
+import { FetchResponse } from "../utils/types";
 
 const useGetFetch = <Data, Param>(url: RequestInfo): FetchResponse<Data, Param> => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
