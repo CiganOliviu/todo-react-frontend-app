@@ -1,6 +1,6 @@
 import { createContext, FC, useContext, useEffect, useState } from 'react';
 import usePersistentState, { removeStorage, setStorage } from "./usePersistentState";
-import { AuthResponseType, CredentialsType } from "../utils/types";
+import { AuthResponseType, CredentialsPayloadType, RegisterPayloadType } from "../utils/types";
 import { useNavigate } from "react-router-dom";
 import { requestUrls } from "../utils/backend";
 import { pageRoutes } from "../utils/dataStructures";
@@ -16,18 +16,35 @@ const useAuthenticationService = () => {
         error: loginError,
         loading: loginLoading,
         fetcher: sendLoginPayload
-    } = usePostFetch<AuthResponseType, CredentialsType>(requestUrls.login);
+    } = usePostFetch<AuthResponseType, CredentialsPayloadType>(requestUrls.login);
+    const {
+        response: registerResponse,
+        error: registerError,
+        loading: registerLoading,
+        fetcher: sendRegisterPayload
+    } = usePostFetch<AuthResponseType, RegisterPayloadType>(requestUrls.register);
 
     const [directTokenAccess, setDirectTokenAccess] = useState<string>('');
 
-    const logUserIn = (username: string, password: string) => {
+    const logUserIn = (email: string, password: string) => {
         const payload = {
-            username: username,
+            email: email,
             password: password,
         };
 
         sendLoginPayload(payload);
     };
+
+    const registerUser = (firstname: string, lastname: string, email: string, password: string) => {
+        const payload = {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+        };
+
+        sendRegisterPayload(payload);
+    }
 
     const setAuthFields = (props?: AuthResponseType) => {
         setIsLoggedIn(!!props);
@@ -52,11 +69,20 @@ const useAuthenticationService = () => {
         // eslint-disable-next-line
     }, [loginError, loginResponse, loginLoading]);
 
+    useEffect(() => {
+        if (registerResponse) {
+            setAuthFields(registerResponse);
+            navigate(pageRoutes.HOME);
+        }
+        // eslint-disable-next-line
+    }, [registerError, registerResponse, registerLoading])
+
     return {
         directTokenAccess,
         isLoggedIn,
 
         logUserIn,
+        registerUser,
         logUserOut,
         setIsLoggedIn
     };
@@ -67,6 +93,7 @@ const initialState = {
     isLoggedIn: false,
     error: null,
     logUserIn: (user: string, pass: string) => undefined,
+    registerUser: (firstname: string, lastname: string, email: string, password: string) => undefined,
     logUserOut: () => undefined
 };
 

@@ -40,7 +40,7 @@ export const LoginScreen: FC = () => {
                 <GeneralPadding />
                 <AuthenticationScreenInputField type={'password'} placeholder={'password'} onChange={handleInputPasswordField} />
                 <GeneralPadding />
-                <AuthenticationScreenButton>Login</AuthenticationScreenButton>
+                <AuthenticationScreenButton onClick={onLoginButtonClick}>Login</AuthenticationScreenButton>
                 <GeneralPadding />
                 <AuthenticationScreenButton backgroundColor={'#07183d'}>Register</AuthenticationScreenButton>
             </AuthenticationScreenBox>

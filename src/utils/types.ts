@@ -2,7 +2,7 @@ export type FetchResponse<data, param> = {
     response: data | null;
     error: any;
     loading: boolean;
-    fetcher: (arg: param, token?: string, isFormData?: boolean) => any;
+    fetcher: (arg: param, token?: string) => any;
 };
 
 export type AuthResponseType = {
@@ -10,7 +10,14 @@ export type AuthResponseType = {
     token: string;
 };
 
-export type CredentialsType = {
-    username: string;
+export type CredentialsPayloadType = {
+    email: string;
     password: string;
 };
+
+export type RegisterPayloadType = {
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+}

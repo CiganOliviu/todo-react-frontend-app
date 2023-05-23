@@ -6,18 +6,18 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
     const [apiData, setApiData] = useState<Data | null>(null);
     const [serverError, setServerError] = useState(null);
 
-    const fetcher = async (param?: Param, token?: string, isForm?: boolean) => {
+    const fetcher = async (param?: Param, token?: string) => {
         setIsLoading(true);
         try {
             const request = await fetch(url, {
                 method: method || 'POST',
                 headers: {
                     Accept: 'application/json',
-                    ...(!isForm && { 'Content-Type': 'application/json' }),
+                    'Content-Type': 'application/json',
                     ...(token && { Authorization: `Bearer ${token}` })
                 },
                 ...(param && {
-                    body: isForm ? (param as any) : JSON.stringify(param)
+                    body: JSON.stringify(param)
                 })
             });
 
