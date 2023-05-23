@@ -2,7 +2,7 @@ import styled from "styled-components";
 // @ts-ignore
 import LoginBackground from '../../assets/Images/login-background.jpg';
 
-export const LoginScreenContainer = styled.div`
+export const AuthenticationScreenContainer = styled.div`
     background: url(${LoginBackground});
     height: 100vh;
     display: flex;
@@ -11,9 +11,9 @@ export const LoginScreenContainer = styled.div`
     text-align: center;
 `;
 
-export const LoginScreenTitle = styled.h1``
+export const AuthenticationScreenTitle = styled.h1``
 
-export const LoginScreenDarkerOverlay = styled.div`
+export const AuthenticationScreenDarkerOverlay = styled.div`
     position: absolute;
     top: 0;
     left: 0;
@@ -22,13 +22,13 @@ export const LoginScreenDarkerOverlay = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const LoginScreenBox = styled.div`
+export const AuthenticationScreenBox = styled.div`
     position: absolute;
-    top: 20%;
+    top: 10%;
     width: 25%;
 `;
 
-export const LoginScreenInputField = styled.input`
+export const AuthenticationScreenInputField = styled.input`
     padding: 0.9rem;
     width: 90%;
     background: transparent;
@@ -49,7 +49,7 @@ export const GeneralPadding = styled.div`
     padding: 1rem;
 `;
 
-export const LoginScreenButton = styled.button<{ backgroundColor?: string }>`
+export const AuthenticationScreenButton = styled.button<{ backgroundColor?: string }>`
     background: ${(props) => props.backgroundColor ? props.backgroundColor : '#2264f4'};
     border: none;
     width: 100%;

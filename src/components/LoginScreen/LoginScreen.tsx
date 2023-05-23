@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import {
     GeneralPadding,
-    LoginScreenBox, LoginScreenButton,
-    LoginScreenContainer,
-    LoginScreenDarkerOverlay,
-    LoginScreenInputField, LoginScreenTitle
+    AuthenticationScreenBox, AuthenticationScreenButton,
+    AuthenticationScreenContainer,
+    AuthenticationScreenDarkerOverlay,
+    AuthenticationScreenInputField, AuthenticationScreenTitle
 } from "./LoginScreen.css";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
@@ -31,19 +31,19 @@ export const LoginScreen: FC = () => {
     };
 
     return (
-        <LoginScreenContainer>
-            <LoginScreenDarkerOverlay />
-            <LoginScreenBox>
-                <LoginScreenTitle>Login Screen</LoginScreenTitle>
+        <AuthenticationScreenContainer>
+            <AuthenticationScreenDarkerOverlay />
+            <AuthenticationScreenBox>
+                <AuthenticationScreenTitle>Login Screen</AuthenticationScreenTitle>
                 <GeneralPadding />
-                <LoginScreenInputField type={'text'} placeholder={'email'} onChange={handleInputEmailField} />
+                <AuthenticationScreenInputField type={'text'} placeholder={'email'} onChange={handleInputEmailField} />
                 <GeneralPadding />
-                <LoginScreenInputField type={'password'} placeholder={'password'} onChange={handleInputPasswordField} />
+                <AuthenticationScreenInputField type={'password'} placeholder={'password'} onChange={handleInputPasswordField} />
                 <GeneralPadding />
-                <LoginScreenButton>Login</LoginScreenButton>
+                <AuthenticationScreenButton>Login</AuthenticationScreenButton>
                 <GeneralPadding />
-                <LoginScreenButton backgroundColor={'#07183d'}>Register</LoginScreenButton>
-            </LoginScreenBox>
-        </LoginScreenContainer>
+                <AuthenticationScreenButton backgroundColor={'#07183d'}>Register</AuthenticationScreenButton>
+            </AuthenticationScreenBox>
+        </AuthenticationScreenContainer>
     )
 }
