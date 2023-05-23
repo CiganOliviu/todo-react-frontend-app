@@ -1,10 +1,21 @@
 import { FC } from "react";
-import { LoginScreenContainer } from "./LoginScreen.css";
+import {
+    GeneralPadding,
+    LoginScreenBox,
+    LoginScreenContainer,
+    LoginScreenDarkerOverlay,
+    LoginScreenInputField
+} from "./LoginScreen.css";
 
 export const LoginScreen: FC = () => {
     return (
         <LoginScreenContainer>
-            XXX
+            <LoginScreenDarkerOverlay />
+            <LoginScreenBox>
+                <LoginScreenInputField type={'text'} placeholder={'email'} />
+                <GeneralPadding />
+                <LoginScreenInputField type={'password'} placeholder={'password'} />
+            </LoginScreenBox>
         </LoginScreenContainer>
     )
 }
