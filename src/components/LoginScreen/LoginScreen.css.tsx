@@ -24,7 +24,7 @@ export const LoginScreenDarkerOverlay = styled.div`
 
 export const LoginScreenBox = styled.div`
     position: absolute;
-    top: 30%;
+    top: 20%;
     width: 25%;
 `;
 
