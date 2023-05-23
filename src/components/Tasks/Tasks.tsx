@@ -1,13 +1,14 @@
 import { Bullet, TaskContainer, TaskInputBox, TaskLine } from "./Tasks.css";
 import { AuthenticationScreenInputField, GeneralPadding } from "../Authentication/Authentication.css";
-import React from "react";
+import React, { useState } from "react";
+import { taskTypes } from "../../utils/dataStructures";
 
 export const Tasks = () => {
 
     const mockData = [
         {
             name: "Task 1",
-            type: "Others",
+            type: "Work",
             estimation: "3"
         },
         {
@@ -27,9 +28,15 @@ export const Tasks = () => {
         }
     ]
 
+    const [task, setTask] = useState<string>('');
+
+    const handleInputTaskField = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTask(event.target.value);
+    };
+
     const getColorBasedOnTaskType = (taskType: string): string => {
-        if (taskType === 'University') return '#FF3660';
-        if (taskType === 'Work') return '#BAFFC9';
+        if (taskType === taskTypes.UNIVERSITY) return '#FF3660';
+        if (taskType === taskTypes.OTHERS) return '#BAFFC9';
 
         return '#F5E1DC';
     };
@@ -37,11 +44,11 @@ export const Tasks = () => {
     return (
         <TaskContainer>
             <TaskInputBox>
-                <AuthenticationScreenInputField type={'text'} placeholder={'email'} />
+                <AuthenticationScreenInputField type={'text'} placeholder={'Add Task'} onChange={handleInputTaskField} />
                 <GeneralPadding />
-                {mockData.map((task) => {
+                {mockData.map((task, index) => {
                     return (
-                        <TaskLine>
+                        <TaskLine key={index}>
                             <span><Bullet color={getColorBasedOnTaskType(task.type)}/> {task.name} - {task.estimation}</span>
                             <GeneralPadding />
                         </TaskLine>
