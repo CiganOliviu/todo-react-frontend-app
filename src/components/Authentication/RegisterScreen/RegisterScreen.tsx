@@ -2,9 +2,9 @@ import {
     AuthenticationScreenBox, AuthenticationScreenButton,
     AuthenticationScreenContainer,
     AuthenticationScreenDarkerOverlay, AuthenticationScreenInputField, AuthenticationScreenTitle, GeneralPadding
-} from "../LoginScreen/LoginScreen.css";
+} from "../Authentication.css";
 import React, { useState } from "react";
-import { useAuthentication } from "../../hooks/useAuthentication";
+import { useAuthentication } from "../../../hooks/useAuthentication";
 
 export const RegisterScreen = () => {
     const { registerUser } = useAuthentication();

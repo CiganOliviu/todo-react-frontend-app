@@ -5,8 +5,8 @@ import {
     AuthenticationScreenContainer,
     AuthenticationScreenDarkerOverlay,
     AuthenticationScreenInputField, AuthenticationScreenTitle
-} from "./LoginScreen.css";
-import { useAuthentication } from "../../hooks/useAuthentication";
+} from "../Authentication.css";
+import { useAuthentication } from "../../../hooks/useAuthentication";
 
 export const LoginScreen: FC = () => {
     const { logUserIn } = useAuthentication();

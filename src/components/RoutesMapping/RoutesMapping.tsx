@@ -1,8 +1,8 @@
 import { pageRoutes } from "../../utils/dataStructures";
-import { LoginScreen } from "../LoginScreen/LoginScreen";
+import { LoginScreen } from "../Authentication/LoginScreen/LoginScreen";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { RegisterScreen } from "../RegisterScreen/RegisterScreen";
+import { RegisterScreen } from "../Authentication/RegisterScreen/RegisterScreen";
 
 export const RoutesMapping = () => {
     const pageRoutesMapping = [
