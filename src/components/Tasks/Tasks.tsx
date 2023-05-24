@@ -84,7 +84,7 @@ export const Tasks = () => {
 
     return (
         <TaskContainer>
-            <TaskEditDialog isOpen={taskEditDialog} setIsOpen={setTaskEditDialog} taskId={taskId} />
+            { taskEditDialog && <TaskEditDialog isOpen={taskEditDialog} setIsOpen={setTaskEditDialog} taskId={taskId} /> }
             <TaskInputBox>
                 <GeneralInputFields type={'text'} placeholder={'Add Task'} value={taskName} onChange={handleInputTaskField} />
                 <GeneralPadding />

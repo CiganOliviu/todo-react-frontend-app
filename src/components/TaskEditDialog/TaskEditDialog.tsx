@@ -26,7 +26,6 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
     const { token } = useValidateUser();
 
     const [previewTask, setPreviewTask] = useState<TaskType>();
-
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [estimation, setEstimation] = useState<string>('');
