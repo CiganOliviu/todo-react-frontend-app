@@ -1,7 +1,7 @@
 import {
-    AuthenticationScreenBox, AuthenticationScreenButton,
+    AuthenticationScreenBox, StandardScreenButton,
     AuthenticationScreenContainer,
-    AuthenticationScreenDarkerOverlay, AuthenticationScreenInputField, AuthenticationScreenTitle, GeneralPadding
+    AuthenticationScreenDarkerOverlay, GeneralInputFields, AuthenticationScreenTitle, GeneralPadding
 } from "../Authentication.css";
 import React, { useState } from "react";
 import { useAuthentication } from "../../../hooks/useAuthentication";
@@ -44,15 +44,15 @@ export const RegisterScreen = () => {
             <AuthenticationScreenBox>
                 <AuthenticationScreenTitle>Login Screen</AuthenticationScreenTitle>
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'text'} placeholder={'First name'} onChange={handleInputFirstnameField} />
+                <GeneralInputFields type={'text'} placeholder={'First name'} onChange={handleInputFirstnameField} />
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'text'} placeholder={'Last name'} onChange={handleInputLastnameField} />
+                <GeneralInputFields type={'text'} placeholder={'Last name'} onChange={handleInputLastnameField} />
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'text'} placeholder={'Email'} onChange={handleInputEmailField} />
+                <GeneralInputFields type={'text'} placeholder={'Email'} onChange={handleInputEmailField} />
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'password'} placeholder={'Password'} onChange={handleInputPasswordField} />
+                <GeneralInputFields type={'password'} placeholder={'Password'} onChange={handleInputPasswordField} />
                 <GeneralPadding />
-                <AuthenticationScreenButton onClick={onRegisterButtonClick}>Register</AuthenticationScreenButton>
+                <StandardScreenButton onClick={onRegisterButtonClick}>Register</StandardScreenButton>
             </AuthenticationScreenBox>
         </AuthenticationScreenContainer>
     )

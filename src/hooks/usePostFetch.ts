@@ -9,7 +9,6 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
     const fetcher = async (param?: Param, token?: string, optionalUrl?: string) => {
 
         const finalUrl = optionalUrl || url;
-        console.log(finalUrl);
         setIsLoading(true);
         try {
             const request = await fetch(finalUrl, {

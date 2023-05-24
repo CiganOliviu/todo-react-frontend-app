@@ -1,7 +1,7 @@
 import { Bullet, IconWrapper, TaskContainer, TaskInputBox, TaskLine } from "./Tasks.css";
 import {
-    AuthenticationScreenButton,
-    AuthenticationScreenInputField,
+    StandardScreenButton,
+    GeneralInputFields,
     GeneralPadding
 } from "../Authentication/Authentication.css";
 import React, { useEffect, useState } from "react";
@@ -13,35 +13,14 @@ import useValidateUser from "../../hooks/useValidateUser";
 import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { TaskEditDialogContainer } from "../TaskEditDialog/TaskEditDialog.css";
+import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
 
 export const Tasks = () => {
     const { response, fetcher } = useGetFetch<TaskType[], string>(requestUrls.tasks);
     const { response: apiResponse, fetcher: sendPayload } = usePostFetch<any, any>(requestUrls.tasks);
     const { response: deleteApiResponse, fetcher: sendDeletePayload } = usePostFetch<any, any>(requestUrls.tasks, 'DELETE');
     const { token } = useValidateUser();
-
-    const mockData = [
-        {
-            name: "Task 1",
-            type: "Work",
-            estimation: "3"
-        },
-        {
-            name: "Task 2",
-            type: "University",
-            estimation: "1"
-        },
-        {
-            name: "Task 3",
-            type: "Others",
-            estimation: "2"
-        },
-        {
-            name: "Task 4",
-            type: "University",
-            estimation: "5"
-        }
-    ]
 
     const [taskName, setTaskName] = useState<string>('');
     const [tasks, setTasks] = useState<TaskType[]>([]);
@@ -96,17 +75,20 @@ export const Tasks = () => {
     useEffect(() => {
         if (apiResponse) {
             setTasks([...tasks, { id: apiResponse.id, name: apiResponse.name }]);
+            setTaskName('');
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [apiResponse]);
 
+
     return (
         <TaskContainer>
+            <TaskEditDialog />
             <TaskInputBox>
-                <AuthenticationScreenInputField type={'text'} placeholder={'Add Task'} onChange={handleInputTaskField} />
+                <GeneralInputFields type={'text'} placeholder={'Add Task'} value={taskName} onChange={handleInputTaskField} />
                 <GeneralPadding />
-                <AuthenticationScreenButton onClick={onAddTaskButtonClicked} width={80}>Add Task</AuthenticationScreenButton>
+                <StandardScreenButton onClick={onAddTaskButtonClicked} width={80}>Add Task</StandardScreenButton>
                 <GeneralPadding optionalPadding={3} />
                 {tasks.map((task, index) => {
                     const onDeleteTaskButtonClicked = () => {

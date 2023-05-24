@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import {
     GeneralPadding,
-    AuthenticationScreenBox, AuthenticationScreenButton,
+    AuthenticationScreenBox, StandardScreenButton,
     AuthenticationScreenContainer,
     AuthenticationScreenDarkerOverlay,
-    AuthenticationScreenInputField, AuthenticationScreenTitle
+    GeneralInputFields, AuthenticationScreenTitle
 } from "../Authentication.css";
 import { useAuthentication } from "../../../hooks/useAuthentication";
 
@@ -36,13 +36,13 @@ export const LoginScreen: FC = () => {
             <AuthenticationScreenBox>
                 <AuthenticationScreenTitle>Login Screen</AuthenticationScreenTitle>
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'text'} placeholder={'email'} onChange={handleInputEmailField} />
+                <GeneralInputFields type={'text'} placeholder={'email'} onChange={handleInputEmailField} />
                 <GeneralPadding />
-                <AuthenticationScreenInputField type={'password'} placeholder={'password'} onChange={handleInputPasswordField} />
+                <GeneralInputFields type={'password'} placeholder={'password'} onChange={handleInputPasswordField} />
                 <GeneralPadding />
-                <AuthenticationScreenButton onClick={onLoginButtonClick}>Login</AuthenticationScreenButton>
+                <StandardScreenButton onClick={onLoginButtonClick}>Login</StandardScreenButton>
                 <GeneralPadding />
-                <AuthenticationScreenButton backgroundColor={'#07183d'}>Register</AuthenticationScreenButton>
+                <StandardScreenButton backgroundColor={'#07183d'}>Register</StandardScreenButton>
             </AuthenticationScreenBox>
         </AuthenticationScreenContainer>
     )
