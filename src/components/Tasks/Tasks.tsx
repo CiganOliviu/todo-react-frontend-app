@@ -12,7 +12,7 @@ import { TaskType } from "../../utils/types";
 import useValidateUser from "../../hooks/useValidateUser";
 import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
 
 export const Tasks = () => {
@@ -112,6 +112,7 @@ export const Tasks = () => {
                                 {task.name} - {task?.estimation}
                                 <IconWrapper onClick={onDeleteTaskButtonClicked}><FontAwesomeIcon icon={faTrash} /></IconWrapper>
                                 <IconWrapper onClick={onEditTaskButtonClicked}><FontAwesomeIcon icon={faEdit} /></IconWrapper>
+                                <IconWrapper><FontAwesomeIcon icon={faEye} /></IconWrapper>
                             </span>
                             <GeneralPadding />
                         </TaskLine>
