@@ -38,11 +38,11 @@ export const GeneralInputFields = styled.input`
   border-radius: 0.5rem;
 
   ::placeholder {
-    color: rgba(242, 242, 242, 0.52);
+      color: rgba(242, 242, 242, 0.52);
   }
 
   input:focus {
-    border-color: #fff;
+      border-color: #fff;
   }
 `;
 

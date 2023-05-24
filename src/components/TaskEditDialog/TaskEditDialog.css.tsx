@@ -7,6 +7,5 @@ export const TaskEditDialogContainer = styled.div`
     height: auto;
     background: #282A3A;
     border: 0.2rem solid #fff;
-    text-align: center;
     padding: 2rem;
 `;

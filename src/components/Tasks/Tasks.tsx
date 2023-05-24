@@ -13,7 +13,6 @@ import useValidateUser from "../../hooks/useValidateUser";
 import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { TaskEditDialogContainer } from "../TaskEditDialog/TaskEditDialog.css";
 import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
 
 export const Tasks = () => {
@@ -44,7 +43,7 @@ export const Tasks = () => {
 
     const getColorBasedOnTaskType = (taskType: string): string => {
         if (taskType === taskTypes.UNIVERSITY) return '#FF3660';
-        if (taskType === taskTypes.OTHERS) return '#BAFFC9';
+        if (taskType === taskTypes.WORK) return '#BAFFC9';
 
         return '#F5E1DC';
     };
