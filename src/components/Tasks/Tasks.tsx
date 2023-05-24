@@ -12,7 +12,7 @@ import { TaskType } from "../../utils/types";
 import useValidateUser from "../../hooks/useValidateUser";
 import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
 
 export const Tasks = () => {
