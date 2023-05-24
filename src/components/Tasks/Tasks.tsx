@@ -24,7 +24,7 @@ export const Tasks = () => {
     const [taskName, setTaskName] = useState<string>('');
     const [tasks, setTasks] = useState<TaskType[]>([]);
     const [taskEditDialog, setTaskEditDialog] = useState<boolean>(false);
-    const [taskId, setTaskId] = useState<number>(0);
+    const [taskId, setTaskId] = useState<number | undefined>();
 
     useEffect(() => {
         fetcher(token);
@@ -43,10 +43,10 @@ export const Tasks = () => {
     };
 
     const getColorBasedOnTaskType = (taskType: string): string => {
-        if (taskType === taskTypes.UNIVERSITY) return '#FF3660';
-        if (taskType === taskTypes.WORK) return '#BAFFC9';
+        if (taskType === taskTypes.UNIVERSITY) return 'green';
+        if (taskType === taskTypes.WORK) return 'red';
 
-        return '#F5E1DC';
+        return 'yellow';
     };
 
     const onAddTaskButtonClicked = () => {
@@ -65,11 +65,6 @@ export const Tasks = () => {
         sendDeletePayload(undefined, token, detailObjectUrl);
     }
 
-    const editTaskById = (id: number) => {
-        setTaskEditDialog(!taskEditDialog);
-        setTaskId(id);
-    };
-
     useEffect(() => {
         if (deleteApiResponse) {
             removeTask(deleteApiResponse.id);
@@ -87,7 +82,6 @@ export const Tasks = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postApiResponse]);
 
-
     return (
         <TaskContainer>
             <TaskEditDialog isOpen={taskEditDialog} setIsOpen={setTaskEditDialog} taskId={taskId} />
@@ -102,7 +96,8 @@ export const Tasks = () => {
                     };
 
                     const onEditTaskButtonClicked = () => {
-                        editTaskById(task.id || 0);
+                        setTaskEditDialog(!taskEditDialog);
+                        setTaskId(task.id);
                     };
 
                     return (
@@ -112,7 +107,6 @@ export const Tasks = () => {
                                 {task.name} - {task?.estimation}
                                 <IconWrapper onClick={onDeleteTaskButtonClicked}><FontAwesomeIcon icon={faTrash} /></IconWrapper>
                                 <IconWrapper onClick={onEditTaskButtonClicked}><FontAwesomeIcon icon={faEdit} /></IconWrapper>
-                                <IconWrapper><FontAwesomeIcon icon={faEye} /></IconWrapper>
                             </span>
                             <GeneralPadding />
                         </TaskLine>

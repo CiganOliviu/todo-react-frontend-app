@@ -9,3 +9,5 @@ export const TaskEditDialogContainer = styled.div`
     border: 0.2rem solid #fff;
     padding: 2rem;
 `;
+
+export const TaskEditDialogTitle = styled.h3``;

@@ -5,7 +5,15 @@ export const pageRoutes = {
 };
 
 export const taskTypes = {
-    UNIVERSITY: 'University',
-    WORK: 'Work',
-    OTHERS: 'Others'
-}
+    UNIVERSITY: 'UNIVERSITY',
+    WORK: 'WORK',
+    OTHERS: 'OTHERS'
+};
+
+export const STATUSES_MOCKUP = [
+    'DRAFT', 'OPEN', 'PROGRESS', 'CLOSED'
+];
+
+export const TYPES_MOCKUP = [
+    'UNIVERSITY', 'WORK', 'OTHER'
+];

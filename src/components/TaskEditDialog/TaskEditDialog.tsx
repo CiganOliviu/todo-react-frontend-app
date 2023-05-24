@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { TaskEditDialogContainer } from "./TaskEditDialog.css";
+import { TaskEditDialogContainer, TaskEditDialogTitle } from "./TaskEditDialog.css";
 import {
     StandardScreenButton,
     GeneralInputFields,
@@ -11,20 +11,13 @@ import { requestUrls } from "../../utils/backend";
 import useValidateUser from "../../hooks/useValidateUser";
 import useGetFetch from "../../hooks/useGetFetch";
 import { TaskType } from "../../utils/types";
+import { STATUSES_MOCKUP, TYPES_MOCKUP } from "../../utils/dataStructures";
 
 type TaskEditDialogType = {
     isOpen: boolean
     setIsOpen: any;
-    taskId: number;
+    taskId: number | undefined;
 };
-
-const STATUSES_MOCKUP = [
-    'DRAFT', 'OPEN', 'PROGRESS', 'CLOSED'
-];
-
-const TYPES_MOCKUP = [
-    'UNIVERSITY', 'WORK', 'OTHER'
-];
 
 export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, taskId }) => {
     const { fetcher: sendPayload } = usePostFetch<any, any>(requestUrls.tasks, 'PUT');
@@ -44,7 +37,7 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
         fetcher(token);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token]);
+    }, [token, taskId]);
 
     useEffect(() => {
         if (taskResponse) {
@@ -76,14 +69,13 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
 
     const updateTaskOnClick = () => {
         const payload = {
-            name,
-            description,
-            estimation,
-            status,
-            type
+            name: name || previewTask?.name,
+            description: description || previewTask?.description,
+            estimation: estimation || previewTask?.estimation,
+            status: status || previewTask?.status,
+            type: type || previewTask?.type
         };
 
-        const detailObjectUrl = requestUrls.task.replace(':id', `${taskId}`);
         sendPayload(payload, token, detailObjectUrl);
         setIsOpen(false);
     };
@@ -95,17 +87,17 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
     return (
         isOpen ? (
             <TaskEditDialogContainer>
-                <h3>Edit Dialog</h3>
+                <TaskEditDialogTitle>Edit Dialog</TaskEditDialogTitle>
                 <GeneralPadding />
-                <GeneralInputFields type={'text'} placeholder={previewTask?.name} onChange={handleInputNameField} />
+                <GeneralInputFields type={'text'} value={name} placeholder={previewTask?.name || 'Task name here'} onChange={handleInputNameField} />
                 <GeneralPadding />
-                <GeneralInputFields type={'text'} placeholder={previewTask?.description} onChange={handleInputDescriptionField} />
+                <GeneralInputFields type={'text'} value={description} placeholder={previewTask?.description || 'Task description here'} onChange={handleInputDescriptionField} />
                 <GeneralPadding />
-                <GeneralInputFields type={'text'} placeholder={previewTask?.estimation} onChange={handleInputEstimationField} />
+                <GeneralInputFields type={'text'} value={estimation} placeholder={previewTask?.estimation || 'Task estimation here'} onChange={handleInputEstimationField} />
                 <GeneralPadding />
-                <DropdownField options={STATUSES_MOCKUP} handleDropdownChange={handleInputStatusField} />
+                <DropdownField activeValue={previewTask?.status} options={STATUSES_MOCKUP} handleDropdownChange={handleInputStatusField} />
                 <GeneralPadding />
-                <DropdownField options={TYPES_MOCKUP} handleDropdownChange={handleInputTypeField} />
+                <DropdownField activeValue={previewTask?.type} options={TYPES_MOCKUP} handleDropdownChange={handleInputTypeField} />
                 <GeneralPadding />
                 <StandardScreenButton onClick={updateTaskOnClick}>Update</StandardScreenButton>
                 <GeneralPadding />

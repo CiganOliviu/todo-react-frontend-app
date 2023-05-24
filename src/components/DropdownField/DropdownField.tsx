@@ -2,11 +2,31 @@ import { DropdownOption, DropdownSelectContainer, DropdownSelectElement } from "
 import React, { FC } from "react";
 
 type DropdownOptionsType = {
-    options: string[] | undefined,
-    handleDropdownChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    options: string[],
+    handleDropdownChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    activeValue?: string;
 };
 
-export const DropdownField: FC<DropdownOptionsType> = ({ options,  handleDropdownChange }) => {
+export const DropdownField: FC<DropdownOptionsType> = ({ options, handleDropdownChange, activeValue }) => {
+
+    const reorderArray = (): string[] => {
+        if (activeValue) {
+            const index = options.indexOf(activeValue);
+            if (index !== -1) {
+                const reorderedArray = [...options];
+                reorderedArray.splice(index, 1);
+                reorderedArray.unshift(activeValue);
+                return reorderedArray;
+            }
+        }
+
+        return options;
+    };
+
+    reorderArray();
+
+    console.log(options);
+
     return (
         <DropdownSelectContainer>
             <DropdownSelectElement onChange={handleDropdownChange}>
