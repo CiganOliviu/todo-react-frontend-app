@@ -22,9 +22,15 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen }) =>
                 <TaskEditDialogContainer>
                     <h3>Edit Dialog</h3>
                     <GeneralPadding />
-                    <GeneralInputFields type={'text'} placeholder={'email'} />
+                    <GeneralInputFields type={'text'} placeholder={'name'} />
                     <GeneralPadding />
-                    <GeneralInputFields type={'password'} placeholder={'password'} />
+                    <GeneralInputFields type={'text'} placeholder={'description'} />
+                    <GeneralPadding />
+                    <GeneralInputFields type={'text'} placeholder={'estimation'} />
+                    <GeneralPadding />
+                    <GeneralInputFields type={'text'} placeholder={'type'} />
+                    <GeneralPadding />
+                    <GeneralInputFields type={'text'} placeholder={'status'} />
                     <GeneralPadding />
                     <StandardScreenButton>Update</StandardScreenButton>
                     <GeneralPadding />

@@ -27,4 +27,6 @@ export type TaskType = {
     name: string;
     estimation?: string;
     type?: string;
+    description?: string;
+    status?: string;
 }
