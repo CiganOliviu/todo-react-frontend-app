@@ -9,7 +9,7 @@ type DropdownOptionsType = {
 export const DropdownField: FC<DropdownOptionsType> = ({ options,  handleDropdownChange }) => {
     return (
         <DropdownSelectContainer>
-            <DropdownSelectElement>
+            <DropdownSelectElement onChange={handleDropdownChange}>
                 {options?.map((option, index) => {
                     return <DropdownOption key={index} value={option}>{option}</DropdownOption>;
                 })}
