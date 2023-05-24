@@ -2,7 +2,7 @@ export type FetchResponse<data, param> = {
     response: data | null;
     error: any;
     loading: boolean;
-    fetcher: (arg: param, token?: string) => any;
+    fetcher: (arg: param, token?: string, optionalUrl?: string) => any;
 };
 
 export type AuthResponseType = {
@@ -23,6 +23,8 @@ export type RegisterPayloadType = {
 };
 
 export type TaskType = {
+    id?: number;
     name: string;
-    estimation: string;
+    estimation?: string;
+    type?: string;
 }

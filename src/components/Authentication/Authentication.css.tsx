@@ -46,18 +46,19 @@ export const AuthenticationScreenInputField = styled.input`
     }
 `;
 
-export const GeneralPadding = styled.div`
-    padding: 1rem;
+export const GeneralPadding = styled.div<{ optionalPadding?: number }>`
+    padding: ${(props) => props.optionalPadding || 1}rem;
 `;
 
-export const AuthenticationScreenButton = styled.button<{ backgroundColor?: string }>`
+export const AuthenticationScreenButton = styled.button<{ backgroundColor?: string, width?: number }>`
     background: ${(props) => props.backgroundColor ? props.backgroundColor : '#2264f4'};
     border: none;
-    width: 100%;
+    width: ${(props) => props.width || 100}%;
     padding: 0.9rem;
     color: #fff;
     font-weight: bold;
     transition: all 300ms ease;
+    cursor: pointer;
   
     :hover {
         background: #0a45c7;

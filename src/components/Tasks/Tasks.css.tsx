@@ -11,6 +11,7 @@ export const TaskContainer = styled.div`
 `;
 
 export const TaskInputBox = styled.div`
+    margin-top: 5rem;
     width: 30%;
     text-align: center;
 `;
@@ -22,6 +23,16 @@ export const Bullet = styled.div<{ color: string }>`
     border-radius: 2rem;
     margin-right: 2rem;
     background: ${(props) => props.color};
+`;
+
+export const IconWrapper = styled.button`
+    display: inline-block;
+    margin-left: 2rem;
+    background: none;
+    font-size: 1.3rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 `;
 
 export const TaskLine = styled.div`

@@ -6,10 +6,13 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
     const [apiData, setApiData] = useState<Data | null>(null);
     const [serverError, setServerError] = useState(null);
 
-    const fetcher = async (param?: Param, token?: string) => {
+    const fetcher = async (param?: Param, token?: string, optionalUrl?: string) => {
+
+        const finalUrl = optionalUrl || url;
+        console.log(finalUrl);
         setIsLoading(true);
         try {
-            const request = await fetch(url, {
+            const request = await fetch(finalUrl, {
                 method: method || 'POST',
                 headers: {
                     Accept: 'application/json',
