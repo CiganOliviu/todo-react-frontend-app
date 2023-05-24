@@ -12,7 +12,7 @@ import { TaskType } from "../../utils/types";
 import useValidateUser from "../../hooks/useValidateUser";
 import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TaskEditDialogContainer } from "../TaskEditDialog/TaskEditDialog.css";
 import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
 
@@ -24,6 +24,7 @@ export const Tasks = () => {
 
     const [taskName, setTaskName] = useState<string>('');
     const [tasks, setTasks] = useState<TaskType[]>([]);
+    const [taskEditDialog, setTaskEditDialog] = useState<boolean>(false);
 
     useEffect(() => {
         fetcher(token);
@@ -64,6 +65,10 @@ export const Tasks = () => {
         sendDeletePayload(undefined, token, detailObjectUrl);
     }
 
+    const onEditButtonClicked = () => {
+        setTaskEditDialog(!taskEditDialog);
+    };
+
     useEffect(() => {
         if (deleteApiResponse) {
             removeTask(deleteApiResponse.id);
@@ -84,7 +89,7 @@ export const Tasks = () => {
 
     return (
         <TaskContainer>
-            <TaskEditDialog />
+            <TaskEditDialog isOpen={taskEditDialog} setIsOpen={setTaskEditDialog}/>
             <TaskInputBox>
                 <GeneralInputFields type={'text'} placeholder={'Add Task'} value={taskName} onChange={handleInputTaskField} />
                 <GeneralPadding />
@@ -100,6 +105,7 @@ export const Tasks = () => {
                                 <Bullet color={getColorBasedOnTaskType(task?.type ?? '')}/>
                                 {task.name} - {task?.estimation}
                                 <IconWrapper onClick={onDeleteTaskButtonClicked}><FontAwesomeIcon icon={faTrash} /></IconWrapper>
+                                <IconWrapper onClick={onEditButtonClicked}><FontAwesomeIcon icon={faEdit} /></IconWrapper>
                             </span>
                             <GeneralPadding />
                         </TaskLine>
