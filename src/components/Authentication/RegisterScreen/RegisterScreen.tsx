@@ -42,7 +42,7 @@ export const RegisterScreen = () => {
         <AuthenticationScreenContainer>
             <AuthenticationScreenDarkerOverlay />
             <AuthenticationScreenBox>
-                <AuthenticationScreenTitle>Login Screen</AuthenticationScreenTitle>
+                <AuthenticationScreenTitle>Register Screen</AuthenticationScreenTitle>
                 <GeneralPadding />
                 <GeneralInputFields type={'text'} placeholder={'First name'} onChange={handleInputFirstnameField} />
                 <GeneralPadding />

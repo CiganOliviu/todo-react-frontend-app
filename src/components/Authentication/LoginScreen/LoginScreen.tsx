@@ -7,9 +7,12 @@ import {
     GeneralInputFields, AuthenticationScreenTitle
 } from "../Authentication.css";
 import { useAuthentication } from "../../../hooks/useAuthentication";
+import { useNavigate } from "react-router-dom";
+import { pageRoutes } from "../../../utils/dataStructures";
 
 export const LoginScreen: FC = () => {
     const { logUserIn } = useAuthentication();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -30,6 +33,10 @@ export const LoginScreen: FC = () => {
         }
     };
 
+    const onRegisterButtonClick = () => {
+        navigate(pageRoutes.REGISTER);
+    }
+
     return (
         <AuthenticationScreenContainer>
             <AuthenticationScreenDarkerOverlay />
@@ -42,7 +49,7 @@ export const LoginScreen: FC = () => {
                 <GeneralPadding />
                 <StandardScreenButton onClick={onLoginButtonClick}>Login</StandardScreenButton>
                 <GeneralPadding />
-                <StandardScreenButton backgroundColor={'#07183d'}>Register</StandardScreenButton>
+                <StandardScreenButton backgroundColor={'#07183d'} onClick={onRegisterButtonClick}>Register</StandardScreenButton>
             </AuthenticationScreenBox>
         </AuthenticationScreenContainer>
     )
