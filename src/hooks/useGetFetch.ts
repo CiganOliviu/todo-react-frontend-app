@@ -5,6 +5,7 @@ const useGetFetch = <Data, Param>(url: RequestInfo): FetchResponse<Data, Param> 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [apiData, setApiData] = useState<Data | null>(null);
     const [serverError, setServerError] = useState(null);
+    const [serverStatus, setServerStatus] = useState<number>(200);
 
     const fetcher = async (token?: Param) => {
         setIsLoading(true);
@@ -16,9 +17,11 @@ const useGetFetch = <Data, Param>(url: RequestInfo): FetchResponse<Data, Param> 
                     ...(token && { Authorization: `Bearer ${token}` })
                 }
             });
+
+            setServerStatus(request.status);
             const response = await request.json();
 
-            if (response.errors) {
+            if (response.error) {
                 setServerError(response);
             } else {
                 setApiData(response);
@@ -35,6 +38,7 @@ const useGetFetch = <Data, Param>(url: RequestInfo): FetchResponse<Data, Param> 
         response: apiData,
         error: serverError,
         loading: isLoading,
+        status: serverStatus,
         fetcher
     };
 };

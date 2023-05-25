@@ -3,6 +3,7 @@ export type FetchResponse<data, param> = {
     error: any;
     loading: boolean;
     fetcher: (arg: param, token?: string, optionalUrl?: string) => any;
+    status: number;
 };
 
 export type AuthResponseType = {

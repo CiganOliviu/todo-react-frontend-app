@@ -5,6 +5,7 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [apiData, setApiData] = useState<Data | null>(null);
     const [serverError, setServerError] = useState(null);
+    const [serverStatus, setServerStatus] = useState<number>(200);
 
     const fetcher = async (param?: Param, token?: string, optionalUrl?: string) => {
 
@@ -23,6 +24,7 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
                 })
             });
 
+            setServerStatus(request.status);
             const response = await request.json();
             if (response.errors) {
                 setServerError(response);
@@ -41,6 +43,7 @@ const usePostFetch = <Data extends any, Param extends any>(url: RequestInfo, met
         response: apiData,
         error: serverError,
         loading: isLoading,
+        status: serverStatus,
         fetcher
     };
 };

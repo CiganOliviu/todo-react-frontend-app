@@ -4,12 +4,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { RegisterScreen } from "../Authentication/RegisterScreen/RegisterScreen";
 import { Tasks } from "../Tasks/Tasks";
+import { ErrorBoundary404 } from "../ErrorBoundary404/ErrorBoundary404";
 
 export const RoutesMapping = () => {
     const pageRoutesMapping = [
         { path: pageRoutes.LOGIN, component: <LoginScreen /> },
         { path: pageRoutes.REGISTER, component: <RegisterScreen /> },
-        { path: pageRoutes.HOME, component: <Tasks /> }
+        { path: pageRoutes.HOME, component: <Tasks /> },
+        { path: pageRoutes.ERROR_404, component: <ErrorBoundary404 /> }
     ]
 
     return (

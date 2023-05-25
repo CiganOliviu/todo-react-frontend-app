@@ -14,9 +14,14 @@ import usePostFetch from "../../hooks/usePostFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { TaskEditDialog } from "../TaskEditDialog/TaskEditDialog";
+import { OverlayNotification } from "../OverlayNotification/OverlayNotification";
+// @ts-ignore
+import ErrorForbidden from "../../assets/Images/403-error-forbidden.png";
+// @ts-ignore
+import ErrorNotFound from "../../assets/Images/404-error-not-found.png";
 
 export const Tasks = () => {
-    const { response, fetcher } = useGetFetch<TaskType[], string>(requestUrls.tasks);
+    const { response, fetcher, status } = useGetFetch<TaskType[], string>(requestUrls.tasks);
     const { response: postApiResponse, fetcher: sendPostPayload } = usePostFetch<any, any>(requestUrls.tasks);
     const { response: deleteApiResponse, fetcher: sendDeletePayload } = usePostFetch<any, any>(requestUrls.tasks, 'DELETE');
     const { token } = useValidateUser();
@@ -81,6 +86,14 @@ export const Tasks = () => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postApiResponse]);
+
+    if (status === 403) {
+        return <OverlayNotification messageAsImage={ErrorForbidden} />
+    }
+
+    if (status === 404) {
+        return <OverlayNotification messageAsImage={ErrorNotFound} />
+    }
 
     return (
         <TaskContainer>

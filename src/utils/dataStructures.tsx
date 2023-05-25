@@ -1,7 +1,8 @@
 export const pageRoutes = {
     HOME: '/',
     LOGIN: '/login',
-    REGISTER: '/register'
+    REGISTER: '/register',
+    ERROR_404: '*'
 };
 
 export const taskTypes = {
