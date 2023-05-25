@@ -29,7 +29,7 @@ export const Tasks = () => {
     useEffect(() => {
         fetcher(token);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token]);
+    }, [token, taskEditDialog]);
 
     useEffect(() => {
         if (response) {

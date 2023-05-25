@@ -83,6 +83,21 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
         setIsOpen(false);
     };
 
+    const reorderArrayByActiveValue = (options: string[], activeValue: string): string[] => {
+        if (activeValue) {
+            const index = options.indexOf(activeValue);
+            if (index !== -1) {
+                const reorderedArray = [...options];
+                reorderedArray.splice(index, 1);
+                reorderedArray.unshift(activeValue);
+
+                return reorderedArray;
+            }
+        }
+
+        return options;
+    };
+
     return (
         isOpen ? (
             <TaskEditDialogContainer>
@@ -94,9 +109,9 @@ export const TaskEditDialog: FC<TaskEditDialogType> = ({ isOpen, setIsOpen, task
                 <GeneralPadding />
                 <GeneralInputFields type={'text'} value={estimation} placeholder={previewTask?.estimation || 'Task estimation here'} onChange={handleInputEstimationField} />
                 <GeneralPadding />
-                <DropdownField activeValue={previewTask?.status} options={STATUSES_MOCKUP} handleDropdownChange={handleInputStatusField} />
+                <DropdownField options={reorderArrayByActiveValue(STATUSES_MOCKUP, previewTask?.status || '')} handleDropdownChange={handleInputStatusField} />
                 <GeneralPadding />
-                <DropdownField activeValue={previewTask?.type} options={TYPES_MOCKUP} handleDropdownChange={handleInputTypeField} />
+                <DropdownField options={reorderArrayByActiveValue(TYPES_MOCKUP, previewTask?.type || '')} handleDropdownChange={handleInputTypeField} />
                 <GeneralPadding />
                 <StandardScreenButton onClick={updateTaskOnClick}>Update</StandardScreenButton>
                 <GeneralPadding />
